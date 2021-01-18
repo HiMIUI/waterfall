@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>fallwater</title>
+		<script type="text/javascript" src="./waterfall.js"></script>
+	</head>
+	<style type="text/css">
+		#main {
+			position: relative;
+			margin: 0 auto;
+		}
+
+		#main .box {
+			float: left;
+			width: 25%;
+		}
+
+		#main .box img {
+			position: relative;
+			width: 98%;
+			margin: 0 1%;
+		}
+	</style>
+	<body>
+		<div id="main">
+		</div>
+	</body>
+	<script type="text/javascript">
+		var dataInt = {
+			"data": [{"src": "./1.jpg"},{"src": "./2.jpg"},{"src": "./3.jpg"},{"src": "./4.jpg"},{"src": "./5.jpg"},{"src": "./6.jpg"},{"src": "./7.jpg"},{"src": "./8.jpg"},{"src": "./9.jpg"},{"src": "./10.jpg"},{"src": "./11.jpg"},{"src": "./12.jpg"},{"src": "./13.jpg"},{"src": "./14.jpg"},{"src": "./15.jpg"}]
+		};
+		waterfall.initDom("main");
+		window.onload = function() {
+			waterfall.waterfall("main", "box");
+			window.onscroll = function() {
+				if (waterfall.checkScrollSlide()) {
+					var oParent = document.getElementById('main');
+					for (let i = 0; i < dataInt.data.length; i++) {
+						var oBox = document.createElement("div");
+						oBox.className = 'box';
+						oParent.appendChild(oBox);
+						var oPic = document.createElement("div");
+						oPic.className = "pic";
+						oBox.appendChild(oPic);
+						var oImg = document.createElement("img");
+						oImg.src = "../img/" + dataInt.data[i].src;
+						oPic.appendChild(oImg);
+					}
+					waterfall.waterfall("main", "box");
+				}
+			}
+		}
+	</script>
+</html>
